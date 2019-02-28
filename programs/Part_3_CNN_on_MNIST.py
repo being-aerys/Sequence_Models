@@ -210,7 +210,7 @@ class Network(nn.Module):
 
 
 #you can use padding as an argument to preserve the original size of the height and the width of the data after it decreases because of the convolution
-get_ipython().run_line_magic('config', 'IPCompleter.greedy=True')
+#get_ipython().run_line_magic('config', 'IPCompleter.greedy=True')
 
 network = Network()# 
 print(network)
@@ -236,12 +236,13 @@ count = 0
 loss_list = []
 iteration_list = []
 accuracy_list = []
-for epoch in range(epochs): 
-    print("data loader size is : ",len(data_loader)) #VVI : data_loader lai enumerate garyo bhane harek enumeration ma 10 ota examples hunxa
+for epoch in range(epochs):
+    print("Epoch is ",epoch)
+    #print("data loader size is : ",len(data_loader)) #VVI : data_loader lai enumerate garyo bhane harek enumeration ma 10 ota examples hunxa
     for i, (features, labels) in enumerate (data_loader): #enumerate indexes a list of tuples to make looping easier
         
-        print("training count is ",i)
-        print("\n\n")
+        #print("training count is ",i)
+        #print("\n\n")
         total_correct_predictions = 0
         
         
@@ -280,7 +281,7 @@ for epoch in range(epochs):
             test_count = 0
             for (test_features, labels) in testing_data:
                 test_count = test_count+1
-                print("test count ",test_count)
+                #print("test count ",test_count)
                 #print("test_features size ",len(testing_data))
                 test = test_features.view(1,1,28,28)
                 output = network(test)
@@ -290,7 +291,7 @@ for epoch in range(epochs):
 #                 print("predicted is", predicted.data)
 #                 print("label is ",labels.data)
 #                 print(" equality check ",(predicted == labels.data).sum())
-                correct += (predicted == labels.data).sum()
+                correct += (predicted == labels).sum()
                 #print("correct is ",correct.data)
            
             accuracy = 100 *correct/float(10000)
